@@ -36,3 +36,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
   })
   
 })
+
+function flipCard(card) {
+  if (lockBoard){return}
+  
+}

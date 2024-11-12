@@ -8,7 +8,7 @@
 .card {
   width: 100px;
   height: 100px;
-  background-color: #333;
+  background-color: #1d1d1d;
   color: #fff;
   display: flex;
   align-items: center;
@@ -26,4 +26,12 @@
 
 .card.matched {
   cursor: default;
+}
+
+.card > span {
+  display: none; /* Hide initially */
+}
+
+.card.revealed > span {
+  display: block; /* Show when revealed */
 }

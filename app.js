@@ -1,49 +1,38 @@
-const gameBoard = document.getElementById("gameBoard");
-const cardValues = ["A", "B", "C", "D", "E", "F", "G", "H"];
-let cards = [...cardValues, ...cardValues]; // Duplicate cards for pairs
-let firstCard, secondCard;
-let isFlipping = false;
+const arr = ['A','B','C','D','E','F','G','H'];
+const newArr = [...arr, ...arr]
 
-// Shuffle cards
-cards.sort(() => 0.5 - Math.random());
+// 16 square
 
-// Create card elements
-cards.forEach(value => {
-  const card = document.createElement("div");
-  card.classList.add("card");
-  card.dataset.value = value;
-  card.innerText = ""; // Initially, hide the card value
-  gameBoard.appendChild(card);
+const shuffle = (newArr) => {
+  for (let i = newArr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+  }
+  return newArr;
+};
 
-  card.addEventListener("click", () => {
-    if (isFlipping || card === firstCard || card.classList.contains("matched")) return;
+const gameBoard =   document.getElementById('gameBoard')
 
-    card.classList.add("flipped");
-    card.innerText = value;
+document.addEventListener('DOMContentLoaded', ()=>{
+  shuffle(newArr)
 
-    if (!firstCard) {
-      firstCard = card;
-    } else {
-      secondCard = card;
-      isFlipping = true;
+  let firstCard
+  let secondCard
 
-      if (firstCard.dataset.value === secondCard.dataset.value) {
-        firstCard.classList.add("matched");
-        secondCard.classList.add("matched");
-        resetCards();
-      } else {
-        setTimeout(() => {
-          firstCard.classList.remove("flipped");
-          firstCard.innerText = "";
-          secondCard.classList.remove("flipped");
-          secondCard.innerText = "";
-          resetCards();
-        }, 1000);
-      }
-    }
-  });
-});
+  let lockBoard = false
+  let matchFound = 0
 
-function resetCards() {
-  [firstCard, secondCard, isFlipping] = [null, null, false];
-}
+  newArr.forEach((card) => {
+    const cardBox = document.createElement('div')
+    cardBox.classList.add("card")
+    
+    const cardName = document.createElement('span')
+    cardName.innerText = card 
+    
+        cardBox.appendChild(cardName)
+        gameBoard.appendChild(cardBox)
+
+    
+  })
+  
+})

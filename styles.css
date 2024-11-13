@@ -27,11 +27,6 @@
 .card.matched {
   cursor: default;
 }
-
-.card > span {
-  display: none; /* Hide initially */
-}
-
-.card.revealed > span {
-  display: block; /* Show when revealed */
+.hidden {
+  display: none;
 }
